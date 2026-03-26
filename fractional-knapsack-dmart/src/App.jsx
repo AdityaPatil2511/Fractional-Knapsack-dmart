@@ -2,7 +2,7 @@ import { useState } from "react";
 import data from "./data";
 import ProductCard from "./components/ProductCard";
 import "./App.css";
-import bgImage from "./assets/mall.jpg";
+import bgImage from "./assets/mall.png";
 
 function App() {
   const [budget, setBudget] = useState("");
