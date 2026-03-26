@@ -2,6 +2,7 @@ import { useState } from "react";
 import data from "./data";
 import ProductCard from "./components/ProductCard";
 import "./App.css";
+import bgImage from "./assets/mall.jpg";
 
 function App() {
   const [budget, setBudget] = useState("");
@@ -70,7 +71,13 @@ function App() {
   };
 
   return (
-    <div className="container">
+    <div className="container"
+    style={{
+    backgroundImage: `url(${bgImage})`,
+    backgroundSize: "cover",
+    backgroundPosition: "center",
+    minHeight: "100vh"
+  }}>
       <h1>Fractional Knapsack Mall Shopping</h1>
 
       <input
