@@ -76,7 +76,8 @@ function App() {
     backgroundImage: `url(${bgImage})`,
     backgroundSize: "cover",
     backgroundPosition: "center",
-    minHeight: "100vh"
+    minHeight: "100vh",
+    width: "100%"
   }}>
       <h1>Fractional Knapsack Mall Shopping</h1>
 
