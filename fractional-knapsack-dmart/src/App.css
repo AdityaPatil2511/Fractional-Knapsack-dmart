@@ -9,29 +9,33 @@ body {
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  min-height: 100vh;
+
+  width: 100vw;        /* FULL WIDTH */
+  min-height: 100vh;   /* FULL HEIGHT */
+
+  margin: 0;
+  padding: 0;
+}
+body, html {
+  margin: 0;
+  padding: 0;
   width: 100%;
+  height: 100%;
+  overflow-x: hidden;  /* removes side scroll */
 }
 
 /* DARK BLUR OVERLAY */
 .overlay {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  min-height: 100vh;
   width: 100%;
-  
-  /* Fallback (always works) */
-  background: rgba(0, 0, 0, 0.7);
+  min-height: 100vh;
 
-  /* Blur effect */
   backdrop-filter: blur(6px);
   -webkit-backdrop-filter: blur(6px);
 
+  background: rgba(0, 0, 0, 0.65);
   color: white;
   padding: 30px;
 }
-
 /* HEADING FIX */
 h1 {
   color: white;
