@@ -6,23 +6,19 @@ import "./App.css";
 function App() {
   const [budget, setBudget] = useState("");
   const [category, setCategory] = useState("");
-  const [searchTerm, setSearchTerm] = useState("");
   const [selectedItems, setSelectedItems] = useState([]);
   const [results, setResults] = useState([]);
   const [totalProfit, setTotalProfit] = useState(0);
-  const [remainingBudget, setRemainingBudget] = useState(0);
 
   const handleSelect = (name, qty, price, profit, unit) => {
-  setSelectedItems((prev) => {
-    const filtered = prev.filter((item) => item.name !== name);
-
-    if (qty > 0) {
-      filtered.push({ name, qty, price, profit, unit });
-    }
-
-    return filtered;
-  });
-};
+    setSelectedItems((prev) => {
+      const filtered = prev.filter((i) => i.name !== name);
+      if (qty > 0) {
+        filtered.push({ name, qty, price, profit, unit });
+      }
+      return filtered;
+    });
+  };
 
   const calculate = () => {
     let remaining = Number(budget);
@@ -46,7 +42,7 @@ function App() {
             ...item,
             obtained: item.qty,
             gained,
-            full: true,
+            full: true
           });
         } else {
           let obtained = remaining / item.price;
@@ -57,7 +53,7 @@ function App() {
             ...item,
             obtained,
             gained,
-            full: false,
+            full: false
           });
 
           remaining = 0;
@@ -67,14 +63,13 @@ function App() {
 
     setResults(output);
     setTotalProfit(profitSum);
-    setRemainingBudget(remaining);
   };
 
   return (
     <div className="bg-container">
       <div className="overlay">
 
-        <h1>Fractional Knapsack Dmart Shopping</h1>
+        <h1>Fractional Knapsack Mall Shopping</h1>
 
         <input
           type="number"
@@ -88,41 +83,24 @@ function App() {
           <option value="grocery">Grocery</option>
           <option value="dryfruits">Dry Fruits</option>
           <option value="snacks">Snacks</option>
-          <option value="dairy">Dairy</option>
-          <option value="beverages">Beverages</option>
         </select>
 
         {category && (
-          <input
-            type="text"
-            placeholder="Search product..."
-            value={searchTerm}
-            onChange={(e) => setSearchTerm(e.target.value)}
-          />
-        )}
-        
-        {category && (
           <>
-            <h2 style={{ marginTop: "30px" }}>
-              {category.toUpperCase()}
-            </h2>
+            <h2>{category.toUpperCase()}</h2>
 
             <div className="products">
-              {data[category]
-                ?.filter((item) =>
-                  item.name.toLowerCase().includes(searchTerm.toLowerCase())
-                )
-                .map((item) => (
-                 <ProductCard
-                    key={item.name}
-                    item={{
-                               ...item,
-                           qty:
-                            selectedItems.find((i) => i.name === item.name)?.qty || ""
-                   }}
+              {data[category].map((item) => (
+                <ProductCard
+                  key={item.name}
+                  item={{
+                    ...item,
+                    qty:
+                      selectedItems.find((i) => i.name === item.name)?.qty || ""
+                  }}
                   onSelect={handleSelect}
-                  />
-                ))}
+                />
+              ))}
             </div>
 
             <button onClick={calculate}>Calculate</button>
@@ -131,31 +109,17 @@ function App() {
               <div className="result-box" key={item.name}>
                 <b>{item.name}</b><br /><br />
 
-                Required Quantity = {item.qty} {item.unit}<br />
+                Quantity = {item.obtained.toFixed(2)} {item.unit}<br />
                 Price per {item.unit} = ₹{item.price}<br />
-                Profit per {item.unit} = ₹{item.profit}<br /><br />
+                Total Cost = ₹{(item.obtained * item.price).toFixed(2)}<br />
 
-                Total Cost = {item.qty} × ₹{item.price} = ₹{(item.qty * item.price).toFixed(2)}<br />
-
-                {item.full ? (
-                  <>
-                    Full quantity selected<br />
-                    Profit = {item.qty} × ₹{item.profit} = ₹{item.gained.toFixed(2)}
-                  </>
-                ) : (
-                  <>
-                    Partial quantity selected<br />
-                    Quantity Obtained = {item.obtained.toFixed(2)} {item.unit}<br />
-                    Profit = {item.obtained.toFixed(2)} × ₹{item.profit} = ₹{item.gained.toFixed(2)}
-                  </>
-                )}
+                {item.full ? "Full selected" : "Partial selected"}<br />
               </div>
             ))}
 
             {results.length > 0 && (
               <div className="result-box">
-                <b>Total Profit:</b> ₹{totalProfit.toFixed(2)}<br />
-                <b>Remaining Budget:</b> ₹{remainingBudget.toFixed(2)}
+                <b>Total Value:</b> ₹{totalProfit.toFixed(2)}
               </div>
             )}
           </>

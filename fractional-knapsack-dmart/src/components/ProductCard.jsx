@@ -1,10 +1,16 @@
+import { useState, useEffect } from "react";
+
 function ProductCard({ item, onSelect }) {
-  const ratio = (item.profit / item.price).toFixed(2);
+  const [qty, setQty] = useState("");
+
+  useEffect(() => {
+    setQty(item.qty || "");
+  }, [item.qty]);
 
   return (
     <div className="card">
-    
       <img src={item.image} alt={item.name} />
+
       <h3>{item.name}</h3>
 
       <p className="price">
@@ -12,20 +18,15 @@ function ProductCard({ item, onSelect }) {
       </p>
 
       <input
-  type="number"
-  step="0.1"
-  placeholder={`Enter Quantity (${item.unit})`}
-  value={item.qty || ""}
-  onChange={(e) =>
-    onSelect(
-      item.name,
-      Number(e.target.value),
-      item.price,
-      item.profit,
-      item.unit
-    )
-  }
-/>
+        type="number"
+        placeholder={`Enter Quantity (${item.unit})`}
+        value={qty}
+        onChange={(e) => {
+          const value = e.target.value;
+          setQty(value);
+          onSelect(item.name, Number(value), item.price, item.profit, item.unit);
+        }}
+      />
     </div>
   );
 }
