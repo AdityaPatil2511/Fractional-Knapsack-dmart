@@ -1,21 +1,3 @@
-body {
-  font-family: 'Segoe UI', sans-serif;
-  margin: 0;
-}
-
-/* FULL BACKGROUND */
-.bg-container {
-  background-image: url("./assets/mall.png");
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-
-  width: 100vw;        /* FULL WIDTH */
-  min-height: 100vh;   /* FULL HEIGHT */
-
-  margin: 0;
-  padding: 0;
-}
 body, html {
   margin: 0;
   padding: 0;
@@ -23,12 +5,29 @@ body, html {
   height: 100%;
   overflow-x: hidden;  /* removes side scroll */
 }
+body, html {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  overflow-x: hidden;
+}
 
+/* Background */
+.bg-container {
+  background-image: url("./assets/mall.png");
+  background-size: cover;
+  background-position: center;
+  min-height: 100vh;
+  width: 100%;
+}
+
+/* Overlay FIXED */
 .overlay {
   width: 100%;
   min-height: 100vh;
 
-  overflow-y: auto;   /* ✅ allow scrolling */
+  display: block;           /* ❗ NOT flex */
+  overflow-y: auto;         /* ❗ ENABLE SCROLL */
 
   backdrop-filter: blur(6px);
   -webkit-backdrop-filter: blur(6px);
@@ -36,7 +35,11 @@ body, html {
   background: rgba(0, 0, 0, 0.65);
   color: white;
   padding: 30px;
+}
 
+/* REMOVE SCROLL BLOCKERS */
+* {
+  box-sizing: border-box;
 }
 /* HEADING FIX */
 h1 {
