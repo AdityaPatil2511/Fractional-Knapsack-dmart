@@ -26,15 +26,10 @@ body, html {
 
 /* DARK BLUR OVERLAY */
 .overlay {
-  width: 100%;
   min-height: 100vh;
+  width: 100%;
 
-  display: flex;
-  flex-direction: column;
-  align-items: center;     /* horizontal center */
-  justify-content: center; /* vertical center */
-
-  text-align: center;      /* center text */
+  display: block;   /* IMPORTANT CHANGE */
 
   backdrop-filter: blur(6px);
   -webkit-backdrop-filter: blur(6px);
@@ -45,6 +40,7 @@ body, html {
 }
 /* HEADING FIX */
 h1 {
+  text-align: center;   /* only title centered */
   color: white;
   font-size: 48px;
   text-shadow: 2px 2px 12px rgba(0,0,0,0.8);
