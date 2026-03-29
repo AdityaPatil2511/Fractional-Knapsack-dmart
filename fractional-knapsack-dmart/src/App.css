@@ -24,12 +24,11 @@ body, html {
   overflow-x: hidden;  /* removes side scroll */
 }
 
-/* DARK BLUR OVERLAY */
 .overlay {
-  min-height: 100vh;
   width: 100%;
+  min-height: 100vh;
 
-  display: block;   /* IMPORTANT CHANGE */
+  overflow-y: auto;   /* ✅ allow scrolling */
 
   backdrop-filter: blur(6px);
   -webkit-backdrop-filter: blur(6px);
@@ -37,6 +36,7 @@ body, html {
   background: rgba(0, 0, 0, 0.65);
   color: white;
   padding: 30px;
+
 }
 /* HEADING FIX */
 h1 {
