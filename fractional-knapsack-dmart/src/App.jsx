@@ -13,14 +13,16 @@ function App() {
   const [remainingBudget, setRemainingBudget] = useState(0);
 
   const handleSelect = (name, qty, price, profit, unit) => {
-    setSelectedItems((prev) => {
-      const filtered = prev.filter((item) => item.name !== name);
-      if (qty > 0) {
-        filtered.push({ name, qty, price, profit, unit });
-      }
-      return filtered;
-    });
-  };
+  setSelectedItems((prev) => {
+    const filtered = prev.filter((item) => item.name !== name);
+
+    if (qty > 0) {
+      filtered.push({ name, qty, price, profit, unit });
+    }
+
+    return filtered;
+  });
+};
 
   const calculate = () => {
     let remaining = Number(budget);
@@ -111,10 +113,14 @@ function App() {
                   item.name.toLowerCase().includes(searchTerm.toLowerCase())
                 )
                 .map((item) => (
-                  <ProductCard
+                 <ProductCard
                     key={item.name}
-                    item={item}
-                    onSelect={handleSelect}
+                    item={{
+                               ...item,
+                           qty:
+                            selectedItems.find((i) => i.name === item.name)?.qty || ""
+                   }}
+                  onSelect={handleSelect}
                   />
                 ))}
             </div>

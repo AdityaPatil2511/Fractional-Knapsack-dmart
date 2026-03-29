@@ -3,10 +3,7 @@ function ProductCard({ item, onSelect }) {
 
   return (
     <div className="card">
-      <div className="badge">
-        Ratio: {ratio}
-      </div>
-
+    
       <img src={item.image} alt={item.name} />
       <h3>{item.name}</h3>
 
@@ -14,24 +11,21 @@ function ProductCard({ item, onSelect }) {
         ₹{item.price}/{item.unit}
       </p>
 
-      <p className="profit">
-        Profit: ₹{item.profit}/{item.unit}
-      </p>
-
       <input
-        type="number"
-        step="0.1"
-        placeholder={`Enter Quantity (${item.unit})`}
-        onChange={(e) =>
-          onSelect(
-            item.name,
-            Number(e.target.value),
-            item.price,
-            item.profit,
-            item.unit
-          )
-        }
-      />
+  type="number"
+  step="0.1"
+  placeholder={`Enter Quantity (${item.unit})`}
+  value={item.qty || ""}
+  onChange={(e) =>
+    onSelect(
+      item.name,
+      Number(e.target.value),
+      item.price,
+      item.profit,
+      item.unit
+    )
+  }
+/>
     </div>
   );
 }
