@@ -98,7 +98,7 @@ function App() {
             onChange={(e) => setSearchTerm(e.target.value)}
           />
         )}
-
+        
         {category && (
           <>
             <h2 style={{ marginTop: "30px" }}>
