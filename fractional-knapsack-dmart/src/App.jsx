@@ -37,7 +37,7 @@ function App() {
       let totalCost = item.qty * item.price;
 
       if (remaining > 0) {
-        if (remaining >= totalCost) {
+        if (remaining >= totalCost - 0.0001) {
           remaining -= totalCost;
           let gained = item.qty * item.profit;
           profitSum += gained;
@@ -74,7 +74,7 @@ function App() {
     <div className="bg-container">
       <div className="overlay">
 
-        <h1>Fractional Knapsack Mall Shopping</h1>
+        <h1>Fractional Knapsack Dmart Shopping</h1>
 
         <input
           type="number"
